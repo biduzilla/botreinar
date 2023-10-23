@@ -7,12 +7,10 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.ricky.botreinar.domain.model.CardioWithCorrida
-import com.ricky.botreinar.domain.model.Treino
-import com.ricky.botreinar.domain.model.TreinoWithExercicio
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface Cardio {
+interface CardioDao {
     @Query("SELECT * FROM CARDIO")
     fun getAllCardios(): Flow<List<CardioWithCorrida>>
 
@@ -20,13 +18,13 @@ interface Cardio {
     suspend fun getCardioById(idCardio: Long): CardioWithCorrida
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCardio(cardio: Cardio)
+    suspend fun insertCardio(cardio: CardioDao)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateCardio(cardio: Cardio)
+    suspend fun updateCardio(cardio: CardioDao)
 
     @Delete
-    suspend fun deleteCardio(cardio: Cardio)
+    suspend fun deleteCardio(cardio: CardioDao)
 
     @Query("DELETE FROM CARDIO WHERE ID_CARDIO =:idCardio")
     suspend fun deleteCardioById(idCardio: Long)
