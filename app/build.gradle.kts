@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -9,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ricky.botreinar"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -66,4 +68,46 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    //DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Extended Icons
+    implementation ("androidx.compose.material:material-icons-extended:1.3.1")
+
+    //Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.45")
+    kapt("com.google.dagger:hilt-android-compiler:2.45")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    //Room
+    implementation ("androidx.room:room-runtime:2.5.1")
+    annotationProcessor ("androidx.room:room-compiler:2.5.1")
+
+    // To use Kotlin annotation processing tool (kapt) MUST HAVE!
+    kapt("androidx.room:room-compiler:2.5.1")
+    implementation ("androidx.room:room-ktx:2.5.1")
+
+    // Compose dependencies
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha08")
+    implementation("com.google.accompanist:accompanist-flowlayout:0.17.0")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
+
+    // Coroutine Lifecycle Scopes
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+
+    //Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.45")
+    kapt("com.google.dagger:hilt-android-compiler:2.45")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
+
+    //AnimatedNavHost
+    implementation ("com.google.accompanist:accompanist-navigation-animation:0.31.2-alpha")
 }
