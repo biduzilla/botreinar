@@ -16,7 +16,7 @@ interface TreinoDao {
     fun getAllTreinos(): Flow<List<TreinoWithExercicio>>
 
     @Query("SELECT * FROM TREINO WHERE ID_TREINO =:idTreino")
-    suspend fun getTreinoById(idTreino: Long): TreinoWithExercicio
+    fun getTreinoById(idTreino: Long): Flow<TreinoWithExercicio>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTreino(treino: Treino)

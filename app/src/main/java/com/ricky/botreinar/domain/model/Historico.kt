@@ -3,6 +3,7 @@ package com.ricky.botreinar.domain.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.ricky.botreinar.domain.enum.TipoEnum
 import java.time.LocalDate
 
 @Entity(tableName = "HISTORICO")
@@ -12,7 +13,7 @@ data class Historico(
     val idHistorico: Long,
 
     @ColumnInfo(name = "TIPO")
-    val tipo: String,
+    val tipo: TipoEnum,
 
     @ColumnInfo(name = "ID_TREINO")
     val idTreino: Long,

@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CorridaDao {
     @Query("SELECT * FROM CORRIDA")
-    fun getALlCorridas(): Flow<List<Corrida>>
+    fun getAllCorridas(): Flow<List<Corrida>>
 
     @Query("SELECT * FROM CORRIDA WHERE ID_CORRIDA= :idCorrida")
     fun getCorridaById(idCorrida: Long): Flow<Corrida>

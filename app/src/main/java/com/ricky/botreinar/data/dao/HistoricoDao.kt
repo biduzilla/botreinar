@@ -14,7 +14,7 @@ interface HistoricoDao {
     @Query("SELECT * FROM HISTORICO")
     fun getAllHistoricos(): Flow<List<Historico>>
 
-    @Query("SELECT * FROM HISTORICO WHERE ID_HISTORICO =: idHistorico")
+    @Query("SELECT * FROM HISTORICO WHERE ID_HISTORICO = :idHistorico")
     fun getHistoricoById(idHistorico: Long): Flow<Historico>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

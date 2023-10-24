@@ -15,7 +15,7 @@ interface CardioDao {
     fun getAllCardios(): Flow<List<CardioWithCorrida>>
 
     @Query("SELECT * FROM CARDIO WHERE ID_CARDIO =:idCardio")
-    suspend fun getCardioById(idCardio: Long): CardioWithCorrida
+    fun getCardioById(idCardio: Long): Flow<CardioWithCorrida>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCardio(cardio: CardioDao)
