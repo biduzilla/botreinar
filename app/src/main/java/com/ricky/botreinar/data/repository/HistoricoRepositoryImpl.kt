@@ -1,7 +1,7 @@
 package com.ricky.botreinar.data.repository
 
 import com.ricky.botreinar.data.dao.HistoricoDao
-import com.ricky.botreinar.domain.enum.TipoEnum
+import com.ricky.botreinar.domain.enums.TipoEnum
 import com.ricky.botreinar.domain.model.CardioWithCorrida
 import com.ricky.botreinar.domain.model.Historico
 import com.ricky.botreinar.domain.model.TreinoWithExercicio
@@ -9,12 +9,9 @@ import com.ricky.botreinar.domain.repository.CardioRepository
 import com.ricky.botreinar.domain.repository.HistoricoRepository
 import com.ricky.botreinar.domain.repository.TreinoRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

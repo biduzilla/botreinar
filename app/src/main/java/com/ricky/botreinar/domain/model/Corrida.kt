@@ -9,11 +9,11 @@ import java.math.BigDecimal
 data class Corrida(
     @PrimaryKey(true)
     @ColumnInfo("ID_CORRIDA")
-    val idCorrida: Long,
+    var idCorrida: Long = 0L,
 
     @ColumnInfo("VELOCIDADE")
-    val velocidade: BigDecimal,
+    var velocidade: BigDecimal  = BigDecimal(0.0),
 
     @ColumnInfo("TEMPO")
-    val tempo: Int
+    var tempo: Int = 0
 )

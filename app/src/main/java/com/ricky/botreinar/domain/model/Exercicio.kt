@@ -8,17 +8,17 @@ import androidx.room.PrimaryKey
 data class Exercicio(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID_EXERCICIO")
-    val idExercicio: Long,
+    var idExercicio: Long = 0L,
 
     @ColumnInfo(name = "NOME")
-    var nome: String,
+    var nome: String = "",
 
     @ColumnInfo(name = "DESCRICAO")
-    var descricao: String,
+    var descricao: String = "",
 
     @ColumnInfo(name = "REPETICOES")
-    var repeticao: Int,
+    var repeticao: Int = 0,
 
     @ColumnInfo(name = "SERIES")
-    var series: Int,
+    var series: Int = 0,
     )

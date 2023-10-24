@@ -1,4 +1,4 @@
-package com.ricky.botreinar.domain.enum
+package com.ricky.botreinar.domain.enums
 
 enum class TipoEnum(val value: String) {
     TREINO("treino"),

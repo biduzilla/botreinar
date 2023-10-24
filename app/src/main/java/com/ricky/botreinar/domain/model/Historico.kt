@@ -3,21 +3,21 @@ package com.ricky.botreinar.domain.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ricky.botreinar.domain.enum.TipoEnum
+import com.ricky.botreinar.domain.enums.TipoEnum
 import java.time.LocalDate
 
 @Entity(tableName = "HISTORICO")
 data class Historico(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID_HISTORICO")
-    val idHistorico: Long,
+    var idHistorico: Long = 0L,
 
     @ColumnInfo(name = "TIPO")
-    val tipo: TipoEnum,
+    var tipo: TipoEnum = TipoEnum.TREINO,
 
     @ColumnInfo(name = "ID_TREINO")
-    val idTreino: Long,
+    var idTreino: Long = 0L,
 
     @ColumnInfo(name = "DATA")
-    val data: LocalDate = LocalDate.now()
+    var data: LocalDate = LocalDate.now()
 )

@@ -9,5 +9,5 @@ data class CardioWithCorrida(
         parentColumn = "ID_CARDIO",
         entityColumn = "ID_CORRIDA"
     )
-    val corridas: List<Corrida>
+    var corridas: List<Corrida> = emptyList()
 )

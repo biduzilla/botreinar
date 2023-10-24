@@ -9,14 +9,14 @@ import java.math.BigDecimal
 data class Cardio(
     @PrimaryKey(true)
     @ColumnInfo("ID_CARDIO")
-    val idCardio: Long,
+    var idCardio: Long = 0L,
 
     @ColumnInfo("TEMPO_TOTAL")
-    val tempoTotal: Int,
+    var tempoTotal: Int = 0,
 
     @ColumnInfo("VELOCIDADE_MEDIA")
-    val velocidadeTotal: BigDecimal,
+    var velocidadeTotal: BigDecimal = BigDecimal(0.0),
 
     @ColumnInfo("DISTANCIA_TOTAL")
-    val distanciaTotal: BigDecimal
+    var distanciaTotal: BigDecimal = BigDecimal(0.0)
 )

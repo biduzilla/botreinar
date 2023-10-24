@@ -25,7 +25,7 @@ class DataStoreUtil(private val context: Context) {
     fun getTheme(): Flow<Boolean> {
         return context.dataStore.data.map { preferences ->
             preferences[THEME_KEY] ?: false
-        }s
+        }
     }
 
 }

@@ -9,5 +9,5 @@ data class TreinoWithExercicio(
         parentColumn = "ID_TREINO",
         entityColumn = "ID_EXERCICIO"
     )
-    val exercicios: List<Exercicio>
+    var exercicios: List<Exercicio> = emptyList()
 )

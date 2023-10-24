@@ -9,14 +9,11 @@ import java.time.LocalDate
 data class Treino(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="ID_TREINO")
-    val idTreino:Long,
-
-    @ColumnInfo(name="EXERCICIO")
-    val exercicios:List<Exercicio>,
+    var idTreino:Long = 0L,
 
     @ColumnInfo(name="LETRA")
-    val letra:String,
+    var letra:String = "",
 
     @ColumnInfo("DATA")
-    val data:LocalDate = LocalDate.now()
+    var data:LocalDate = LocalDate.now()
 )
