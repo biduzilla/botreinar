@@ -15,5 +15,8 @@ data class Treino(
     var letra:String = "",
 
     @ColumnInfo("DATA")
-    var data:LocalDate = LocalDate.now()
+    var data:LocalDate = LocalDate.now(),
+
+    @ColumnInfo("DESCRICAO")
+    var descricao:String = ""
 )
