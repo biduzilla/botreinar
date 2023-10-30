@@ -1,0 +1,3 @@
+package com.ricky.botreinar.presentation.treino_detalhe
+
+sealed interface TreinoDetalheEvent

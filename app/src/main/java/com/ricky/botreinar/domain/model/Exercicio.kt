@@ -21,4 +21,7 @@ data class Exercicio(
 
     @ColumnInfo(name = "SERIES")
     var series: Int = 0,
+
+    @ColumnInfo(name = "DESCANSO")
+    var descanso: Long = 0L,
     )
