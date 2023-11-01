@@ -1,10 +1,14 @@
 package com.ricky.botreinar.presentation.treino_detalhe.components
 
-import androidx.compose.foundation.clickable
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -28,8 +32,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ricky.botreinar.R
@@ -55,13 +61,26 @@ fun CardExercicio(
     var finalizado by remember {
         mutableStateOf(isFinalizado)
     }
-    Card(modifier = modifier
-        .fillMaxWidth()
-        .clickable { expanded = !expanded }) {
-        Row(Modifier.padding(16.dp)) {
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+    ) {
+        Row(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(IntrinsicSize.Max)
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                )
+        ) {
             Column(
-                Modifier.weight(3f),
-                verticalArrangement = Arrangement.Center
+                Modifier
+                    .padding(16.dp)
+                    .weight(4f),
+                verticalArrangement = Arrangement.Center,
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -81,32 +100,59 @@ fun CardExercicio(
                         Spacer(Modifier.height(16.dp))
                         Text(
                             text = "${exercicio.repeticao}x${exercicio.series}",
-                            style = MaterialTheme.typography.bodyLarge
+                            style = MaterialTheme.typography.titleLarge
                         )
                     }
+                }
+                if (!expanded) {
                     Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.End,
-                        verticalArrangement = Arrangement.SpaceBetween
+                        Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        IconButton(onClick = { isShowDialog = true }) {
-                            Icon(
-                                modifier = Modifier.scale(1.2f),
-                                imageVector = Icons.Filled.Delete,
-                                contentDescription = stringResource(id = R.string.apagar)
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(8.dp))
-                        IconButton(onClick = { expanded = !expanded }) {
-                            Icon(
-                                modifier = Modifier.scale(1.2f),
-                                imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                                contentDescription = null
-                            )
-                        }
+                        Text(
+                            text = exercicio.descricao,
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(8.dp),
+                            textAlign = TextAlign.Center
+                        )
+                        Timer(
+                            totalTime = 100L * exercicio.descanso,
+                            handleColor = Color.Green,
+                            inactiveBarColor = Color.DarkGray,
+                            activeBarColor = Color(0xFF37B900),
+                            modifier = Modifier.size(200.dp),
+                            strokeWidth = 2.dp
+                        )
                     }
                 }
             }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(8.dp)
+                    .weight(1f),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                IconButton(onClick = { isShowDialog = true }) {
+                    Icon(
+                        modifier = Modifier.scale(1.2f),
+                        imageVector = Icons.Filled.Delete,
+                        contentDescription = stringResource(id = R.string.apagar)
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                IconButton(onClick = { expanded = !expanded }) {
+                    Icon(
+                        modifier = Modifier.scale(1.2f),
+                        imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                        contentDescription = null
+                    )
+                }
+            }
+
         }
     }
 }
