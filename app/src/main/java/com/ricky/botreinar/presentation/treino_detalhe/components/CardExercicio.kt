@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -32,7 +31,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -116,14 +114,7 @@ fun CardExercicio(
                             modifier = Modifier.padding(8.dp),
                             textAlign = TextAlign.Center
                         )
-                        Timer(
-                            totalTime = 100L * exercicio.descanso,
-                            handleColor = Color.Green,
-                            inactiveBarColor = Color.DarkGray,
-                            activeBarColor = Color(0xFF37B900),
-                            modifier = Modifier.size(200.dp),
-                            strokeWidth = 2.dp
-                        )
+                        TimerProgressBar(totalTime = 1000L)
                     }
                 }
             }
