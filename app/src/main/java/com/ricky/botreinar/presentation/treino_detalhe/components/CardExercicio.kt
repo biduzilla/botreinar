@@ -47,7 +47,6 @@ fun CardExercicio(
     isFinalizado: Boolean = false,
     onRemoverExercicio: () -> Unit = {}
 ) {
-
     var expanded by remember {
         mutableStateOf(false)
     }
@@ -59,6 +58,14 @@ fun CardExercicio(
     var finalizado by remember {
         mutableStateOf(isFinalizado)
     }
+
+    if (isShowDialog) {
+        DialogRemover(onDimiss = { isShowDialog = false }) {
+            onRemoverExercicio()
+            isShowDialog = false
+        }
+    }
+
     Card(
         modifier = modifier
             .fillMaxWidth()
