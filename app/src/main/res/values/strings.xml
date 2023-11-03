@@ -3,4 +3,7 @@
     <string name="apagar">Apagar</string>
     <string name="cancelar">Cancelar</string>
     <string name="titulo_apagar_exercicio">Deseja apagar o exercício?</string>
+    <string name="campo_obrigatorio">Campo Obrigatório</string>
+    <string name="nome_exercicio">Nome do exercício</string>
+    <string name="descricao_exercicio">Descrição do exercício</string>
 </resources>
