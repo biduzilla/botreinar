@@ -86,7 +86,7 @@ fun TextFieldCompose(
 
 @Preview
 @Composable
-fun TextFieldComposePreview() {
+private fun TextFieldComposePreview() {
     BoTreinarTheme {
         TextFieldCompose(
             value = "teste",
