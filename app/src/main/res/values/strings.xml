@@ -11,4 +11,6 @@
     <string name="minutos">Descrição do exercício</string>
     <string name="segundos">Descrição do exercício</string>
     <string name="salvar">Salvar</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="finalizar_treino">Deseja finalizar o treino?</string>
 </resources>

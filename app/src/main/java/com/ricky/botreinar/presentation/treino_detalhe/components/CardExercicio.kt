@@ -63,7 +63,8 @@ fun CardExercicio(
                 isShowDialog = false
             },
             labelAction = R.string.apagar,
-            labelDimiss = R.string.cancelar
+            labelDimiss = R.string.cancelar,
+            title = R.string.titulo_apagar_exercicio
         )
     }
 

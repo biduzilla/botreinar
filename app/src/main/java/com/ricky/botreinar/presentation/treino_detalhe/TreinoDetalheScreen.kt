@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.ricky.botreinar.R
 import com.ricky.botreinar.presentation.treino_detalhe.components.CardExercicio
 import com.ricky.botreinar.presentation.treino_detalhe.components.DialogExercicioForm
+import com.ricky.botreinar.presentation.treino_detalhe.components.DialogText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,6 +40,16 @@ fun TreinoDetalheScreen(
             onChangeDescansoMin = { onEvent(TreinoDetalheEvent.OnChangeDescansoMin(it)) },
             onChangeDescansoSeg = { onEvent(TreinoDetalheEvent.OnChangeDescansoSeg(it)) },
             onSave = { onEvent(TreinoDetalheEvent.OnSave) }
+        )
+    }
+
+    if (state.isFinalizado) {
+        DialogText(
+            onDimiss = { /*TODO*/ },
+            onAction = { /*TODO*/ },
+            labelAction = R.string.finalizar,
+            labelDimiss = R.string.cancelar,
+            title = R.string.finalizar_treino
         )
     }
 

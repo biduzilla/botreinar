@@ -24,6 +24,7 @@ fun DialogText(
     onAction: () -> Unit,
     @StringRes labelAction: Int,
     @StringRes labelDimiss: Int,
+    @StringRes title: Int,
 ) {
 
     AlertDialog(
@@ -31,7 +32,7 @@ fun DialogText(
         shape = RoundedCornerShape(20.dp),
         text = {
             Text(
-                text = stringResource(id = R.string.titulo_apagar_exercicio),
+                text = stringResource(id = title),
                 style = MaterialTheme.typography.bodyLarge
             )
         },
@@ -60,7 +61,8 @@ private fun DialogAddProdutoPreview() {
             onAction = {},
             onDimiss = {},
             labelAction = R.string.apagar,
-            labelDimiss = R.string.cancelar
+            labelDimiss = R.string.cancelar,
+            title = R.string.titulo_apagar_exercicio
         )
     }
 }
