@@ -37,14 +37,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ricky.botreinar.R
-import com.ricky.botreinar.domain.model.Exercicio
+import com.ricky.botreinar.domain.dto.ExercicioDTO
 import com.ricky.botreinar.ui.theme.BoTreinarTheme
 
 @Composable
 fun CardExercicio(
     modifier: Modifier = Modifier,
-    exercicio: Exercicio,
-    isFinalizado: Boolean = false,
+    exercicio: ExercicioDTO,
+    isFinalizado: (Boolean) -> Unit,
     onRemoverExercicio: () -> Unit = {}
 ) {
     var expanded by remember {
@@ -55,15 +55,16 @@ fun CardExercicio(
         mutableStateOf(false)
     }
 
-    var finalizado by remember {
-        mutableStateOf(isFinalizado)
-    }
-
     if (isShowDialog) {
-        DialogRemover(onDimiss = { isShowDialog = false }) {
-            onRemoverExercicio()
-            isShowDialog = false
-        }
+        DialogText(
+            onDimiss = { isShowDialog = false },
+            onAction = {
+                onRemoverExercicio()
+                isShowDialog = false
+            },
+            labelAction = R.string.apagar,
+            labelDimiss = R.string.cancelar
+        )
     }
 
     Card(
@@ -92,9 +93,9 @@ fun CardExercicio(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Checkbox(modifier = Modifier.scale(2f),
-                        checked = finalizado,
+                        checked = exercicio.finalizado,
                         onCheckedChange = {
-                            finalizado = !finalizado
+                            isFinalizado(it)
                         })
                     Spacer(Modifier.width(16.dp))
                     Column {
@@ -160,13 +161,15 @@ fun CardExercicio(
 fun CardExericioPreview() {
     BoTreinarTheme {
         CardExercicio(
-            exercicio = Exercicio(
+            exercicio = ExercicioDTO(
                 nome = "Teste Nome",
                 descricao = "Descrição teste",
                 repeticao = 3,
                 series = 12,
-                descanso = 600L
-            )
+                descanso = 600L,
+                finalizado = true
+            ),
+            isFinalizado = {}
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.ricky.botreinar.presentation.treino_detalhe.components
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,10 +18,12 @@ import com.ricky.botreinar.R
 import com.ricky.botreinar.ui.theme.BoTreinarTheme
 
 @Composable
-fun DialogRemover(
+fun DialogText(
     modifier: Modifier = Modifier,
     onDimiss: () -> Unit,
-    onRemover: () -> Unit
+    onAction: () -> Unit,
+    @StringRes labelAction: Int,
+    @StringRes labelDimiss: Int,
 ) {
 
     AlertDialog(
@@ -38,11 +41,11 @@ fun DialogRemover(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(onClick = { onRemover() }) {
-                    Text(text = stringResource(id = R.string.apagar))
+                Button(onClick = { onAction() }) {
+                    Text(text = stringResource(id = labelAction))
                 }
                 Button(onClick = { onDimiss() }) {
-                    Text(text = stringResource(id = R.string.cancelar))
+                    Text(text = stringResource(id = labelDimiss))
                 }
             }
         },
@@ -53,9 +56,11 @@ fun DialogRemover(
 @Composable
 private fun DialogAddProdutoPreview() {
     BoTreinarTheme {
-        DialogRemover(
-            onRemover = {},
-            onDimiss = {}
+        DialogText(
+            onAction = {},
+            onDimiss = {},
+            labelAction = R.string.apagar,
+            labelDimiss = R.string.cancelar
         )
     }
 }
