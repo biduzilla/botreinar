@@ -3,23 +3,32 @@ package com.ricky.botreinar.presentation.treino_detalhe.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.ricky.botreinar.R
 import com.ricky.botreinar.presentation.treino_detalhe.TreinoDetalheEvent
 import com.ricky.botreinar.presentation.treino_detalhe.TreinoDetalheState
+import com.ricky.botreinar.ui.theme.BoTreinarTheme
 
 @Composable
 fun DialogExercicioForm(
     state: TreinoDetalheState,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     onDimiss: () -> Unit,
     onChangeNome: (String) -> Unit,
     onChangeDescricao: (String) -> Unit,
@@ -60,11 +69,45 @@ fun DialogExercicioForm(
                     label = R.string.repeticao_exercicio,
                     onChange = { onChangeRepeticao(it.toInt()) }
                 )
-                Row(Modifier.fillMaxWidth()) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                    TextFieldNumberCompose(
+                        label = R.string.minutos,
+                        onChange = { onChangeDescansoMin(it) },
+                        textSize = 48.sp
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    TextFieldNumberCompose(
+                        label = R.string.segundos,
+                        onChange = { onChangeDescansoSeg(it) },
+                        textSize = 48.sp
+                    )
+                }
 
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Button(onClick = onSave) {
+                    Text(text = stringResource(id = R.string.salvar))
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun DialogExercicioFormPreview() {
+    BoTreinarTheme {
+        DialogExercicioForm(
+            state = TreinoDetalheState(),
+            onDimiss = { /*TODO*/ },
+            onChangeNome = {},
+            onChangeDescricao = {},
+            onChangeSerie = {},
+            onChangeRepeticao = {},
+            onChangeDescansoMin = {},
+            onChangeDescansoSeg = {},
+            onSave = {}
+        )
     }
 }
 

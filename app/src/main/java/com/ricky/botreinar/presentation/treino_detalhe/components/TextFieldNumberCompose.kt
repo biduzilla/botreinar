@@ -30,6 +30,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ricky.botreinar.R
@@ -38,6 +39,7 @@ import com.ricky.botreinar.ui.theme.BoTreinarTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextFieldNumberCompose(
+    textSize: TextUnit = 64.sp,
     modifier: Modifier = Modifier,
     value: Int = 0,
     @StringRes label: Int,
@@ -50,7 +52,7 @@ fun TextFieldNumberCompose(
                 vertical = 8.dp,
                 horizontal = 16.dp
             )
-            .widthIn(max =100.dp)
+            .widthIn(max = 100.dp)
     ) {
 
         OutlinedTextField(
@@ -68,7 +70,7 @@ fun TextFieldNumberCompose(
                 imeAction = ime
             ),
             textStyle = TextStyle(
-                fontSize = 64.sp,
+                fontSize = textSize,
                 textAlign = TextAlign.Center
             )
         )
@@ -84,7 +86,7 @@ fun TextFieldNumberCompose(
 
 @Preview
 @Composable
-fun TextFieldNumberComposePreview() {
+private fun TextFieldNumberComposePreview() {
     BoTreinarTheme {
         TextFieldNumberCompose(
             label = R.string.nome_exercicio,
