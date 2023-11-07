@@ -23,7 +23,7 @@ import com.ricky.botreinar.domain.model.Treino
         Corrida::class,
         Historico::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

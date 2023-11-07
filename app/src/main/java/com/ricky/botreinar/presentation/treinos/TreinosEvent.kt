@@ -1,3 +1,5 @@
 package com.ricky.botreinar.presentation.treinos
 
-sealed interface TreinosEvent
+sealed interface TreinosEvent{
+    object ShowDialogForm:TreinosEvent
+}

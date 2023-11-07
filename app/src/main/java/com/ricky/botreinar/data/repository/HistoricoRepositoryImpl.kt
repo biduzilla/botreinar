@@ -35,19 +35,19 @@ class HistoricoRepositoryImpl @Inject constructor(
     override suspend fun deleteHistoricoById(idHistorico: Long) =
         dao.deleteHistoricoById(idHistorico)
 
-    suspend fun getHistoricoByIdTreino(idHistorico: Long): Flow<TreinoWithExercicio> {
-        return getHistoricoById(idHistorico)
-            .filter { historico -> historico.tipo == TipoEnum.TREINO }
-            .map { historico -> treinoRepository.getTreinoById(historico.idTreino) }
-            .filterNotNull()
-            .first()
-    }
-
-    suspend fun getHistoricoByIdCardio(idHistorico: Long):Flow<CardioWithCorrida>{
-        return getHistoricoById(idHistorico)
-            .filter { historico -> historico.tipo == TipoEnum.CARDIO }
-            .map { historico -> cardioRepository.getCardioById(historico.idTreino) }
-            .filterNotNull()
-            .first()
-    }
+//    suspend fun getHistoricoByIdTreino(idHistorico: Long): Flow<TreinoWithExercicio> {
+//        return getHistoricoById(idHistorico)
+//            .filter { historico -> historico.tipo == TipoEnum.TREINO }
+//            .map { historico -> treinoRepository.getTreinoById(historico.idTreino) }
+//            .filterNotNull()
+//            .first()
+//    }
+//
+//    suspend fun getHistoricoByIdCardio(idHistorico: Long):Flow<CardioWithCorrida>{
+//        return getHistoricoById(idHistorico)
+//            .filter { historico -> historico.tipo == TipoEnum.CARDIO }
+//            .map { historico -> cardioRepository.getCardioById(historico.idTreino) }
+//            .filterNotNull()
+//            .first()
+//    }
 }
