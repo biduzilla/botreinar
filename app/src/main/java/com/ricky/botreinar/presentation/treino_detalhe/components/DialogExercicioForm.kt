@@ -55,19 +55,19 @@ fun DialogExercicioForm(
                 )
                 TextFieldCompose(
                     value = state.descricao,
-                    isError = state.onErrorNome,
+                    isError = state.onErrorDescricao,
                     label = R.string.descricao_exercicio,
                     onChange = { onChangeDescricao(it) }
                 )
                 TextFieldCompose(
                     value = state.series.toString(),
-                    isError = state.onErrorNome,
+                    isError = state.onErrorSerie,
                     label = R.string.serie_exercicio,
                     onChange = { onChangeSerie(it.toInt()) }
                 )
                 TextFieldCompose(
                     value = state.repeticoes.toString(),
-                    isError = state.onErrorNome,
+                    isError = state.onErrorRepeticao,
                     label = R.string.repeticao_exercicio,
                     onChange = { onChangeRepeticao(it.toInt()) }
                 )

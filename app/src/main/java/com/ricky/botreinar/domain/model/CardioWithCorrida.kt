@@ -7,7 +7,7 @@ data class CardioWithCorrida(
     @Embedded val cardio: Cardio,
     @Relation(
         parentColumn = "ID_CARDIO",
-        entityColumn = "ID_CORRIDA"
+        entityColumn = "ID_CARDIO"
     )
     var corridas: List<Corrida> = emptyList()
 )

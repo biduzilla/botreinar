@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import com.ricky.botreinar.R
 import com.ricky.botreinar.navigation.Screens
 import com.ricky.botreinar.presentation.treinos.components.CardRounded
+import com.ricky.botreinar.presentation.treinos.components.DialogTreinoForm
 import com.ricky.botreinar.ui.theme.BoTreinarTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,6 +33,16 @@ fun TreinosScreens(
     state: TreinosState,
     onEvent: (TreinosEvent) -> Unit
 ) {
+
+    if (state.isShowDialog) {
+        DialogTreinoForm(
+            state = state,
+            onDimiss = { onEvent(TreinosEvent.ShowDialogForm) },
+            onChangeDescricao = { onEvent(TreinosEvent.OnChangeDescricao(it)) },
+            onChangeLetra = { onEvent(TreinosEvent.OnChangeLetra(it)) },
+            onSave = { onEvent(TreinosEvent.OnSave) }
+        )
+    }
     Scaffold(topBar = {
         CenterAlignedTopAppBar(title = {
             Text(
@@ -52,9 +63,12 @@ fun TreinosScreens(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             items(state.treinos) {
-                CardRounded(title = it.letra, description = it.descricao) {
-                    navController.navigate(Screens.TreinoDetalheScreen.route + "/${it.idTreino}")
-                }
+                CardRounded(title = it.letra,
+                    description = it.descricao,
+                    onDelete = { onEvent(TreinosEvent.OnDelete(it.idTreino)) },
+                    onClick = {
+                        navController.navigate(Screens.TreinoDetalheScreen.route + "/${it.idTreino}")
+                    })
             }
         }
     }

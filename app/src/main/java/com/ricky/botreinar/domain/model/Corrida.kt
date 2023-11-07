@@ -11,6 +11,9 @@ data class Corrida(
     @ColumnInfo("ID_CORRIDA")
     var idCorrida: Long = 0L,
 
+    @ColumnInfo("ID_CARDIO")
+    var idCardio: Long = 0L,
+
     @ColumnInfo("VELOCIDADE")
     var velocidade: BigDecimal  = BigDecimal(0.0),
 
