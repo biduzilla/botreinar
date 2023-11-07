@@ -5,7 +5,9 @@
     <string name="titulo_apagar_exercicio">Deseja apagar o exercício?</string>
     <string name="campo_obrigatorio">Campo Obrigatório</string>
     <string name="nome_exercicio">Nome do exercício</string>
+    <string name="letra_treino">Tipo do treino</string>
     <string name="descricao_exercicio">Descrição do exercício</string>
+    <string name="descricao_treino">Descrição do treino</string>
     <string name="serie_exercicio">Descrição do exercício</string>
     <string name="repeticao_exercicio">Descrição do exercício</string>
     <string name="minutos">Descrição do exercício</string>

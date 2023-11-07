@@ -22,12 +22,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ricky.botreinar.R
+import com.ricky.botreinar.navigation.Screens
 
 @Composable
 fun SplashScreen(
     state: SplashState,
     navController: NavController
 ) {
+    if (state.isLoading) {
+        navController.navigate(Screens.HomeScreen.route) {
+            popUpTo(Screens.SplashScreen.route) {
+                inclusive = true
+            }
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
