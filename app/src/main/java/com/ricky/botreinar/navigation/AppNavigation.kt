@@ -12,20 +12,34 @@ import androidx.navigation.NavGraphBuilder
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.ricky.botreinar.presentation.home.HomeScreen
 import com.ricky.botreinar.presentation.splash.SplashScreen
 import com.ricky.botreinar.presentation.splash.SplashViewModel
+import com.ricky.botreinar.presentation.treino_detalhe.TreinoDetalheScreen
+import com.ricky.botreinar.presentation.treino_detalhe.TreinoDetalheViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun AppNavigation(){
+fun AppNavigation() {
     val navController = rememberAnimatedNavController()
 
-    AnimatedNavHost(navController = navController, startDestination = Screens.SplashScreen.route){
-        composableSlideHorizontally(Screens.SplashScreen.route){
+    AnimatedNavHost(navController = navController, startDestination = Screens.SplashScreen.route) {
+        composableSlideHorizontally(Screens.SplashScreen.route) {
             val viewModel = hiltViewModel<SplashViewModel>()
             val state by viewModel.state.collectAsState()
 
-            SplashScreen(state = state, navController =navController )
+            SplashScreen(state = state, navController = navController)
+        }
+
+        composableSlideHorizontally(Screens.HomeScreen.route) {
+            HomeScreen(navController = navController)
+        }
+
+        composableSlideHorizontally(Screens.TreinoDetalheScreen.route + "/{treinoId}") {
+            val viewModel = hiltViewModel<TreinoDetalheViewModel>()
+            val state by viewModel.state.collectAsState()
+
+            TreinoDetalheScreen(state = state, onEvent = viewModel::onEvent)
         }
     }
 }

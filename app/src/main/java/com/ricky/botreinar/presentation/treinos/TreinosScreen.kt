@@ -1,7 +1,9 @@
 package com.ricky.botreinar.presentation.treinos
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -19,7 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.ricky.botreinar.R
-import com.ricky.botreinar.presentation.treino_detalhe.TreinoDetalheEvent
+import com.ricky.botreinar.navigation.Screens
+import com.ricky.botreinar.presentation.treinos.components.CardRounded
 import com.ricky.botreinar.ui.theme.BoTreinarTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,8 +47,15 @@ fun TreinosScreens(
             )
         }
     }) { paddingValues ->
-        LazyColumn(modifier = Modifier.padding(paddingValues)) {
-
+        LazyColumn(
+            modifier = Modifier.padding(paddingValues),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            items(state.treinos) {
+                CardRounded(title = it.letra, description = it.descricao) {
+                    navController.navigate(Screens.TreinoDetalheScreen.route + "/${it.idTreino}")
+                }
+            }
         }
     }
 }

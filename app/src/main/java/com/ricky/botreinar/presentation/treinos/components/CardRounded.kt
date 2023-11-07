@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -27,6 +28,7 @@ fun CardRounded(
     modifier: Modifier = Modifier,
     corners: Dp = 20.dp,
     title: String,
+    description: String,
     border: Dp = 5.dp,
     onClick: () -> Unit
 ) {
@@ -42,11 +44,22 @@ fun CardRounded(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
-            )
-            IconButton(onClick = onClick) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.weight(4f)
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                )
+                Text(
+                    text = description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            IconButton(modifier = Modifier.weight(1f), onClick = onClick) {
                 Icon(imageVector = Icons.Default.ArrowForwardIos, contentDescription = title)
             }
         }
@@ -59,6 +72,7 @@ private fun CardRoundedPreview() {
     BoTreinarTheme {
         CardRounded(
             title = "Teste",
+            description = "TesteTesteTesteTesteTesteTesteTesteTesteTesteTeste",
             onClick = {}
         )
     }

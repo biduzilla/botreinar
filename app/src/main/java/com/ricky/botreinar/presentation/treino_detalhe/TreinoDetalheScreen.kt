@@ -1,5 +1,6 @@
 package com.ricky.botreinar.presentation.treino_detalhe
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -68,7 +69,10 @@ fun TreinoDetalheScreen(
             )
         }
     }) { paddingValues ->
-        LazyColumn(Modifier.padding(paddingValues)) {
+        LazyColumn(
+            Modifier.padding(paddingValues),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             items(state.exercicios) { exercicio ->
                 CardExercicio(
                     exercicio = exercicio,
