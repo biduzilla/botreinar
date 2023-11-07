@@ -13,7 +13,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TreinoDao {
     @Query("SELECT * FROM TREINO")
-    fun getAllTreinos(): Flow<List<TreinoWithExercicio>>
+    fun getAllTreinosWithExercicio(): Flow<List<TreinoWithExercicio>>
+
+    @Query("SELECT * FROM TREINO")
+    fun getAllTreinos(): Flow<List<Treino>>
 
     @Query("SELECT * FROM TREINO WHERE ID_TREINO =:idTreino")
     fun getTreinoById(idTreino: Long): Flow<TreinoWithExercicio>

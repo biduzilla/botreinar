@@ -8,7 +8,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class TreinoRepositoryImpl @Inject constructor(private val dao: TreinoDao) : TreinoRepository {
-    override fun getAllTreinos(): Flow<List<TreinoWithExercicio>> = dao.getAllTreinos()
+    override fun getAllTreinosWithExercicios(): Flow<List<TreinoWithExercicio>> =
+        dao.getAllTreinosWithExercicio()
+
+    override fun getAllTreinos(): Flow<List<Treino>> = dao.getAllTreinos()
 
     override fun getTreinoById(idTreino: Long): Flow<TreinoWithExercicio> =
         dao.getTreinoById(idTreino)
