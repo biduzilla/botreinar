@@ -7,7 +7,7 @@ data class TreinoWithExercicio(
     @Embedded val treino: Treino,
     @Relation(
         parentColumn = "ID_TREINO",
-        entityColumn = "ID_EXERCICIO"
+        entityColumn = "ID_TREINO"
     )
     var exercicios: List<Exercicio> = emptyList()
 )

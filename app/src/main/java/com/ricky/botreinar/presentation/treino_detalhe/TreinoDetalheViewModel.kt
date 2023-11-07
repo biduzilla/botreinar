@@ -126,6 +126,7 @@ class TreinoDetalheViewModel @Inject constructor(
                 }
 
                 val exercicio = Exercicio(
+                    idTreino = treino.idTreino,
                     nome = _state.value.nome.trim(),
                     descricao = _state.value.descricao.trim(),
                     series = _state.value.series,

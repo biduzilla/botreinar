@@ -10,6 +10,9 @@ data class Exercicio(
     @ColumnInfo(name = "ID_EXERCICIO")
     var idExercicio: Long = 0L,
 
+    @ColumnInfo(name = "ID_TREINO")
+    var idTreino: Long = 0L,
+
     @ColumnInfo(name = "NOME")
     var nome: String = "",
 
@@ -24,4 +27,4 @@ data class Exercicio(
 
     @ColumnInfo(name = "DESCANSO")
     var descanso: Long = 0L,
-    )
+)
