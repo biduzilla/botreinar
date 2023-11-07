@@ -45,8 +45,8 @@ fun TreinoDetalheScreen(
 
     if (state.isFinalizado) {
         DialogText(
-            onDimiss = { /*TODO*/ },
-            onAction = { /*TODO*/ },
+            onDimiss = { onEvent(TreinoDetalheEvent.DismissDialogFinalizar) },
+            onAction = { onEvent(TreinoDetalheEvent.FinalizarTreino) },
             labelAction = R.string.finalizar,
             labelDimiss = R.string.cancelar,
             title = R.string.finalizar_treino

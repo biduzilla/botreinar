@@ -15,8 +15,8 @@ data class Historico(
     @ColumnInfo(name = "TIPO")
     var tipo: TipoEnum = TipoEnum.TREINO,
 
-    @ColumnInfo(name = "ID_TREINO")
-    var idTreino: Long = 0L,
+    @ColumnInfo(name = "LETRA")
+    var letra: String = "",
 
     @ColumnInfo(name = "DATA")
     var data: LocalDate = LocalDate.now()

@@ -5,30 +5,40 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ricky.botreinar.common.Constants
 import com.ricky.botreinar.domain.dto.ExercicioDTO
+import com.ricky.botreinar.domain.enums.TipoEnum
 import com.ricky.botreinar.domain.model.Exercicio
+import com.ricky.botreinar.domain.model.Historico
+import com.ricky.botreinar.domain.model.Treino
 import com.ricky.botreinar.domain.repository.ExercicioRepository
+import com.ricky.botreinar.domain.repository.HistoricoRepository
 import com.ricky.botreinar.domain.repository.TreinoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class TreinoDetalheViewModel @Inject constructor(
     private val treinoRepository: TreinoRepository,
     private val exercicioRepository: ExercicioRepository,
+    private val historicoRepository: HistoricoRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val _state = MutableStateFlow(TreinoDetalheState())
     val state = _state.asStateFlow()
+    var treino = Treino()
 
     init {
         viewModelScope.launch {
             savedStateHandle.get<Long>(Constants.TREINO_ID)?.let { treinoId ->
-                treinoRepository.getTreinoById(treinoId).collect { treino ->
-                    val dto = treino.exercicios.map { e ->
+                treinoRepository.getTreinoById(treinoId).collect { treinoRecuperado ->
+
+                    treino = treinoRecuperado.treino
+
+                    val dto = treinoRecuperado.exercicios.map { e ->
                         ExercicioDTO(
                             idExercicio = e.idExercicio,
                             nome = e.nome,
@@ -148,7 +158,7 @@ class TreinoDetalheViewModel @Inject constructor(
                 exercicio?.let {
                     exercicio.finalizado = event.isFinalizado
 
-                    val exericiosAtualizado = _state.value.exercicios.map {
+                    val exerciciosAtualizado = _state.value.exercicios.map {
                         if (it.idExercicio == event.id) {
                             exercicio
                         } else {
@@ -156,12 +166,46 @@ class TreinoDetalheViewModel @Inject constructor(
                         }
                     }
 
-                    _state.update {
-                        it.copy(exercicios = exericiosAtualizado)
+                    if (exerciciosAtualizado.all { it.finalizado }) {
+                        _state.update {
+                            it.copy(
+                                isFinalizado = true
+                            )
+                        }
+                    } else {
+                        _state.update {
+                            it.copy(exercicios = exerciciosAtualizado)
+                        }
                     }
                 }
+            }
 
+            TreinoDetalheEvent.FinalizarTreino -> {
+                val historico = Historico(
+                    tipo = TipoEnum.TREINO,
+                    letra = treino.letra,
+                    data = LocalDate.now()
+                )
 
+                viewModelScope.launch {
+                    historicoRepository.insertHistorico(historico)
+                }
+            }
+
+            TreinoDetalheEvent.ShowDialogFinalizar -> {
+                _state.update {
+                    it.copy(
+                        isShowDialogFinalizar = true
+                    )
+                }
+            }
+
+            TreinoDetalheEvent.DismissDialogFinalizar -> {
+                _state.update {
+                    it.copy(
+                        isShowDialogFinalizar = false
+                    )
+                }
             }
         }
     }

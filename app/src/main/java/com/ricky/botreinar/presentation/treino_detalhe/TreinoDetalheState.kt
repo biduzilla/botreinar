@@ -17,5 +17,6 @@ data class TreinoDetalheState(
     var onErrorSerie: Boolean = false,
     var onErrorRepeticao: Boolean = false,
     val isShowDialog: Boolean = false,
-    val isFinalizado: Boolean = false
+    val isFinalizado: Boolean = false,
+    val isShowDialogFinalizar:Boolean = false,
 )
