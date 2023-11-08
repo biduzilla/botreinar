@@ -34,6 +34,7 @@ fun CardRounded(
     corners: Dp = 20.dp,
     title: String,
     description: String,
+    description2: String = "",
     border: Dp = 5.dp,
     onClick: () -> Unit,
     onDelete: () -> Unit,
@@ -72,6 +73,12 @@ fun CardRounded(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
+                if (description2.isNotBlank()) {
+                    Text(
+                        text = description2,
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
             }
         }
     }

@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.ricky.botreinar.R
+import com.ricky.botreinar.common.convertToString
 import com.ricky.botreinar.navigation.Screens
 import com.ricky.botreinar.presentation.treinos.components.CardRounded
 import com.ricky.botreinar.presentation.treinos.components.DialogTreinoForm
@@ -66,6 +67,7 @@ fun TreinosScreens(
                 CardRounded(title = it.letra,
                     description = it.descricao,
                     onDelete = { onEvent(TreinosEvent.OnDelete(it.idTreino)) },
+                    description2 = it.data.convertToString(),
                     onClick = {
                         navController.navigate(Screens.TreinoDetalheScreen.route + "/${it.idTreino}")
                     })
