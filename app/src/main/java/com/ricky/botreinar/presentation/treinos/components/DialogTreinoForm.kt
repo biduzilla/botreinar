@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.ricky.botreinar.R
-import com.ricky.botreinar.presentation.treino_detalhe.TreinoDetalheState
 import com.ricky.botreinar.presentation.treino_detalhe.components.TextFieldCompose
 import com.ricky.botreinar.presentation.treinos.TreinosState
 import com.ricky.botreinar.ui.theme.BoTreinarTheme
